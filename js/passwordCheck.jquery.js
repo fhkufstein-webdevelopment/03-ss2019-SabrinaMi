@@ -26,19 +26,22 @@ function PasswordChecker(wrapperId, passwordInputFieldId, passwordSubmitButtonId
         //onblur is an event which happens in "passwordField" -> so the keyword "this" would refer to the passwordField NOT to our class
         //therefore we previously saved "this" in a variable called "that"
         that.check();
-    });
+    });//bei der Datei ohne jquery steht onblur nicht nur blur, onkeyup statt keydown, onfocus statt focus und statt onclick click
 
     this.passwordField.keydown(function() {
         that.check();
-    });
+    });//bei der Datei ohne jquery steht onblur nicht nur blur, onkeyup statt keydown, onfocus statt focus und statt onclick click
+
 
     this.passwordField.focus(function() {
         that.check();
-    });
+    });//bei der Datei ohne jquery steht onblur nicht nur blur, onkeyup statt keydown, onfocus statt focus und statt onclick click
+
 
     this.passwordSubmitButton.click(function() {
         that.check();
-    });
+    });//bei der Datei ohne jquery steht onblur nicht nur blur, onkeyup statt keydown, onfocus statt focus und statt onclick click
+
 
 
 
@@ -60,7 +63,7 @@ function PasswordChecker(wrapperId, passwordInputFieldId, passwordSubmitButtonId
                 this.wrapperField.removeClass(this.warningClass + ' ' + this.successClass).addClass(this.errorClass);
                 this.passwordSubmitButton.attr('disabled', true);
             }
-
+            //bei der anderen Datei ist es kürzer
 
         } else {
             //obviously a field is null (we weren't able to find it)
@@ -77,7 +80,8 @@ function PasswordChecker(wrapperId, passwordInputFieldId, passwordSubmitButtonId
     this.checkForLength = function() {
         //@todo
         //have a look at javascript string methods and properties
-        return true; //this needs to be replaced!
+        //return true; //this needs to be replaced!
+        return this.passwordField.value.length >= this.minLength;
     };
 
     /*
@@ -87,7 +91,9 @@ function PasswordChecker(wrapperId, passwordInputFieldId, passwordSubmitButtonId
         //@todo
         //have a look at javascript string methods and properties
         //you could probably "match" it somehow
-        return true; //this needs to be replaced!
+        //return true; //this needs to be replaced!
+        var sonderzeichen = /[!§$_.:,;];
+        return sonderzeichen.test(this.passwordField.value);
     };
     //TODO 2 end
 }
